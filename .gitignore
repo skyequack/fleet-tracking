@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+instance/
+*.log
+
+# planning docs and report (kept local)
+*.docx
+ARCHITECTURE.md
+IMPLEMENTATION_PLAN.md
