@@ -69,11 +69,12 @@ def _apply_reading(record, vehicle, reading):
     vehicle.odometer = max(vehicle.odometer, reading)
 
 
-def _avg_daily_km():
-    """Average km per day over the last AVG_KM_WINDOW_DAYS, from Completed trips; None without history."""
+def _avg_daily_km(vehicle_id):
+    """Average km per day of one vehicle over the last AVG_KM_WINDOW_DAYS, from Completed trips; None without history."""
     days, now = current_app.config["AVG_KM_WINDOW_DAYS"], today()
     total = db.session.scalar(select(func.coalesce(func.sum(Trip.distance), 0)).where(
-        Trip.status == "Completed", Trip.end_date > now - timedelta(days=days), Trip.end_date <= now))
+        Trip.vehicle_id == vehicle_id, Trip.status == "Completed",
+        Trip.end_date > now - timedelta(days=days), Trip.end_date <= now))
     return float(total) / days if total else None
 
 
@@ -224,7 +225,8 @@ def advance(maintenance_id):
             M.vehicle_id == vehicle.vehicle_id, M.status == "In Progress", M.maintenance_id != maintenance_id))
         vehicle.status = rules.vehicle_status_after_completion(vehicle.status, others)
         record.next_service_date = rules.next_service_date(
-            record.service_type, record.service_date, current_app.config["SERVICE_INTERVALS"], _avg_daily_km())
+            record.service_type, record.service_date, current_app.config["SERVICE_INTERVALS"],
+            _avg_daily_km(vehicle.vehicle_id))
     record.status = new
     db.session.commit()
     return jsonify(record=record_json(record), vehicle_status=vehicle.status, warnings=warnings)

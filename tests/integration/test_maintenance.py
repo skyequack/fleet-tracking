@@ -210,6 +210,19 @@ def test_next_service_date_projects_the_km_limit_from_the_last_90_days_of_trips(
     assert finish(operator, mid).json["record"]["next_service_date"] == "2027-01-18"      # 10000 km / 100 = 100 days
 
 
+def test_next_service_date_uses_only_this_vehicles_trips(operator, seed):
+    """Regression: the km projection once used the whole fleet's distance, so a vehicle without trips got a date days away."""
+    busy, idle, d = seed(models.Vehicle), seed(models.Vehicle, registration_no="IDL 0001"), seed(models.Driver)
+    seed(models.Trip, vehicle_id=busy, driver_id=d, status="Completed", distance=90000,       # 1,000 km/day for the busy one
+         start_date=date(2026, 8, 1), end_date=date(2026, 8, 2))
+    mid = seed(models.MaintenanceRecord, vehicle_id=idle, service_date=date(2026, 10, 10))
+    start(operator, mid)
+    assert finish(operator, mid).json["record"]["next_service_date"] == "2027-04-08"             # no history: +180 days
+    busy_mid = seed(models.MaintenanceRecord, vehicle_id=busy, service_date=date(2026, 10, 10))
+    start(operator, busy_mid)
+    assert finish(operator, busy_mid).json["record"]["next_service_date"] == "2026-10-20"        # 10,000 km / 1,000 per day = 10 days
+
+
 def test_breakdown_repair_sets_no_next_service_date(operator, seed):
     mid = seed(models.MaintenanceRecord, vehicle_id=seed(models.Vehicle), service_type="Breakdown Repair")
     start(operator, mid)
