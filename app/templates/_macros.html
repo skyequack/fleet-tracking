@@ -1,0 +1,41 @@
+{# Form fields. Each has an empty .invalid-feedback after the input: the client puts server errors there. #}
+{% macro field(prefix, name, label, type='text', col='col-12 col-md-6', dtype=None, attrs={}, hint=None, optional=False) %}
+<div class="{{ col }}">
+  <label class="form-label" for="{{ prefix }}-{{ name }}">{{ label }}{% if optional %} <span class="text-body-secondary">(optional)</span>{% endif %}</label>
+  <input class="form-control" id="{{ prefix }}-{{ name }}" name="{{ name }}" type="{{ type }}"
+         {%- if dtype %} data-type="{{ dtype }}"{% endif %}{% if optional %} data-optional{% endif %}
+         {%- for k, v in attrs.items() %} {{ k }}="{{ v }}"{% endfor %}>
+  <div class="invalid-feedback"></div>
+  {% if hint %}<div class="form-text">{{ hint }}</div>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro select(prefix, name, label, options=[], col='col-12 col-md-6', numeric=False, optional=False) %}
+<div class="{{ col }}">
+  <label class="form-label" for="{{ prefix }}-{{ name }}">{{ label }}</label>
+  <select class="form-select" id="{{ prefix }}-{{ name }}" name="{{ name }}"{% if numeric %} data-numeric{% endif %}{% if optional %} data-optional{% endif %}>
+    {% for value, text in options %}<option value="{{ value }}">{{ text }}</option>{% endfor %}
+  </select>
+  <div class="invalid-feedback"></div>
+</div>
+{% endmacro %}
+
+{% macro form_error() %}<div class="alert alert-danger d-none" data-form-error role="alert"></div>{% endmacro %}
+
+{% macro modal(id, title) %}
+<div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <form class="modal-content" method="post" action="#" novalidate>
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="{{ id }}-title">{{ title }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">{{ form_error() }}<div class="row g-3">{{ caller() }}</div></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endmacro %}

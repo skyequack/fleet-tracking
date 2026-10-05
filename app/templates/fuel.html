@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select, form_error %}
+{% block content %}
+{% if user.role in ('Administrator', 'Operator') %}
+<form id="fuel-form" class="card card-body mb-4" method="post" action="#" novalidate>
+  <h2 class="h5 mb-3">Record a fuel fill</h2>
+  {{ form_error() }}
+  <div class="row g-3">
+    {{ select('f', 'vehicle_id', 'Vehicle', col='col-12 col-md-6 col-xl-3', numeric=True) }}
+    {{ field('f', 'date', 'Date', 'date', col='col-6 col-xl-2') }}
+    {{ field('f', 'odometer', 'Odometer (km)', 'number', col='col-6 col-xl-2', dtype='number', attrs={'min': 0, 'step': 0.1}) }}
+    {{ field('f', 'quantity', 'Litres', 'number', col='col-6 col-xl-2', dtype='number', attrs={'min': 0, 'step': 0.01}) }}
+    {{ field('f', 'price_per_litre', 'Price per litre (SAR)', 'number', col='col-6 col-xl-3', dtype='number', attrs={'min': 0, 'step': 0.01, 'placeholder': 'Default for the fuel type'}, optional=True) }}
+    <div class="col-12 col-md-6 d-flex align-items-end"><div class="form-check"><input class="form-check-input" type="checkbox" id="f-full_tank" name="full_tank" checked><label class="form-check-label" for="f-full_tank">Full tank (used for efficiency)</label></div></div>
+    <div class="col-12 col-md-6 col-xl-3 ms-xl-auto d-flex align-items-end"><button class="btn btn-primary w-100" type="submit">Save fill</button></div>
+  </div>
+  <div class="form-text mt-2">The total cost is calculated by the server. The odometer cannot be lower than the previous reading for the vehicle.</div>
+</form>
+{% endif %}
+
+{% if user.role in ('Administrator', 'Fleet Manager') %}
+<div class="row g-3 mb-4" id="charts"></div>
+{% endif %}
+
+<h2 class="h5 mb-2">{{ 'Your recent fills' if user.role == 'Operator' else 'Fuel records' }}</h2>
+<div class="filters d-flex flex-wrap gap-2 align-items-end mb-3">
+  <div><label class="form-label mb-0 small" for="f-vehicle-filter">Vehicle</label><select class="form-select form-select-sm" id="f-vehicle-filter"></select></div>
+  <div><label class="form-label mb-0 small" for="f-from">From</label><input class="form-control form-control-sm" type="date" id="f-from"></div>
+  <div><label class="form-label mb-0 small" for="f-to">To</label><input class="form-control form-control-sm" type="date" id="f-to"></div>
+</div>
+<div id="list"></div>
+<div id="pager" class="mt-2"></div>
+{% endblock %}
+{% block scripts %}
+{% if user.role in ('Administrator', 'Fleet Manager') %}
+<script src="{{ url_for('static', filename='vendor/plotly.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endif %}
+<script src="{{ url_for('static', filename='js/fuel.js') }}"></script>
+{% endblock %}

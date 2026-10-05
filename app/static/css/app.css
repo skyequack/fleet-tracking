@@ -1,0 +1,41 @@
+/* Chart tokens: the reference palette, light and dark. Charts read these at draw time (charts.js). */
+:root {
+  --viz-surface: #fcfcfb; --viz-text: #0b0b0b; --viz-text-2: #52514e; --viz-muted: #898781;
+  --viz-grid: #e1e0d9; --viz-axis: #c3c2b7; --viz-s1: #2a78d6; --viz-s2: #eb6834;
+}
+[data-bs-theme="dark"] {
+  --viz-surface: #1a1a19; --viz-text: #ffffff; --viz-text-2: #c3c2b7; --viz-muted: #898781;
+  --viz-grid: #2c2c2a; --viz-axis: #383835; --viz-s1: #3987e5; --viz-s2: #d95926;
+}
+
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1600px; margin: 0 auto; }
+.table { --bs-table-bg: transparent; }
+.table th { white-space: nowrap; font-weight: 600; }
+.table td { vertical-align: middle; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.actions { white-space: nowrap; }
+.actions .btn + .btn { margin-left: .25rem; }
+
+.stat-card { border-radius: .5rem; }
+.stat-card .stat-value { font-size: 1.6rem; font-weight: 600; line-height: 1.1; }
+.stat-card .stat-label { font-size: .8rem; color: var(--bs-secondary-color); }
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; }
+
+.chart-card { background: var(--viz-surface); border: 1px solid var(--bs-border-color); border-radius: .5rem; padding: .75rem; }
+.chart-card h2 { font-size: 1rem; font-weight: 600; margin: 0 0 .25rem; color: var(--viz-text); }
+.chart-card .chart-sub { font-size: .8rem; color: var(--viz-text-2); margin-bottom: .25rem; }
+.chart { width: 100%; min-height: 280px; }
+.chart-card details summary { font-size: .85rem; color: var(--viz-text-2); cursor: pointer; margin-top: .25rem; }
+.chart-card details table { font-size: .85rem; }
+
+.filters .form-control, .filters .form-select { min-width: 9rem; }
+.toast-container { z-index: 1100; }
+.risk-bar { height: .5rem; }
+.login-card { max-width: 24rem; margin: 8vh auto 0; }
+.pager { font-size: .9rem; }
+.form-text-inline { font-size: .8rem; color: var(--bs-secondary-color); }
+@media (max-width: 575.98px) {
+  .stat-card .stat-value { font-size: 1.3rem; }
+  .table { font-size: .9rem; }
+}

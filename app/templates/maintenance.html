@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select, modal, form_error %}
+{% block content %}
+<div id="warnings"></div>
+<div class="row g-3 mb-4">
+  <div class="col-12 col-xl-6"><div class="card h-100"><div class="card-body">
+    <h2 class="h5">Scheduled services</h2><div id="scheduled"></div></div></div></div>
+  <div class="col-12 col-xl-6"><div class="card h-100"><div class="card-body">
+    <h2 class="h5">Due within 30 days</h2><p class="small text-body-secondary mb-2">From each vehicle's latest completed service. Overdue items are marked.</p><div id="due"></div></div></div></div>
+</div>
+
+{% if user.role in ('Administrator', 'Operator') %}
+<form id="record-form" class="card card-body mb-4" method="post" action="#" novalidate>
+  <h2 class="h5 mb-3">Schedule a service</h2>
+  {{ form_error() }}
+  <div class="row g-3">
+    {{ select('m', 'vehicle_id', 'Vehicle', col='col-12 col-md-6 col-xl-3', numeric=True) }}
+    {{ select('m', 'service_type', 'Service type', [('Routine Service','Routine Service'),('Oil Change','Oil Change'),('Tyres','Tyres'),('Brakes','Brakes'),('Breakdown Repair','Breakdown Repair'),('Inspection','Inspection')], col='col-12 col-md-6 col-xl-3') }}
+    {{ field('m', 'service_date', 'Service date', 'date', col='col-6 col-xl-2') }}
+    {{ field('m', 'cost', 'Cost (SAR)', 'number', col='col-6 col-xl-2', dtype='number', attrs={'min': 0, 'step': 0.01}, optional=True) }}
+    {{ field('m', 'technician', 'Technician', col='col-12 col-md-6 col-xl-4', optional=True) }}
+    <div class="col-12 col-md-6 col-xl-2 d-flex align-items-end"><button class="btn btn-primary w-100" type="submit">Schedule</button></div>
+  </div>
+</form>
+{% endif %}
+
+<h2 class="h5 mb-2">{{ 'Open services' if user.role == 'Operator' else 'Maintenance history' }}</h2>
+<div class="filters d-flex flex-wrap gap-2 align-items-end mb-3">
+  <div><label class="form-label mb-0 small" for="f-status">Status</label>
+    <select class="form-select form-select-sm" id="f-status"><option value="">All</option><option>Scheduled</option><option>In Progress</option>{% if user.role != 'Operator' %}<option>Completed</option>{% endif %}</select></div>
+  <div><label class="form-label mb-0 small" for="f-type">Type</label>
+    <select class="form-select form-select-sm" id="f-type"><option value="">All</option><option>Routine Service</option><option>Oil Change</option><option>Tyres</option><option>Brakes</option><option>Breakdown Repair</option><option>Inspection</option></select></div>
+  <div><label class="form-label mb-0 small" for="f-vehicle">Vehicle</label><select class="form-select form-select-sm" id="f-vehicle"></select></div>
+</div>
+<div id="list"></div>
+<div id="pager" class="mt-2"></div>
+
+{% if user.role in ('Administrator', 'Operator') %}
+{% call modal('advance-modal', 'Update service') %}
+  <div class="col-12"><p class="mb-0" id="advance-text"></p></div>
+  {{ field('s', 'odometer', 'Odometer reading (km)', 'number', col='col-12', dtype='number', attrs={'min': 0, 'step': 0.1}, optional=True, hint='Leave empty to use the vehicle\'s current reading.') }}
+  {{ field('s', 'cost', 'Final cost (SAR)', 'number', col='col-12 col-md-6', dtype='number', attrs={'min': 0, 'step': 0.01}, optional=True) }}
+  {{ field('s', 'technician', 'Technician', col='col-12 col-md-6', optional=True) }}
+{% endcall %}
+{% call modal('part-modal', 'Add a part') %}
+  {{ field('p', 'part_name', 'Part', col='col-12') }}
+  {{ field('p', 'quantity', 'Quantity', 'number', col='col-6', dtype='int', attrs={'min': 1, 'step': 1}) }}
+  {{ field('p', 'unit_cost', 'Unit cost (SAR)', 'number', col='col-6', dtype='number', attrs={'min': 0, 'step': 0.01}) }}
+  <div class="col-12 form-text">The parts must add up to no more than the record's cost.</div>
+{% endcall %}
+{% endif %}
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/maintenance.js') }}"></script>{% endblock %}

@@ -42,6 +42,8 @@ class VehicleAssignment(db.Model):
     driver_id = db.Column(db.Integer, db.ForeignKey("drivers.driver_id"), nullable=False)
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date)
+    vehicle = db.relationship("Vehicle", lazy="joined")
+    driver = db.relationship("Driver", lazy="joined")
 
 
 class Trip(db.Model):

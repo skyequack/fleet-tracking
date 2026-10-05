@@ -17,7 +17,8 @@ ID = integer(1, 2_147_483_647)
 
 
 def assignment_json(a):
-    return {"assignment_id": a.assignment_id, "vehicle_id": a.vehicle_id, "driver_id": a.driver_id,
+    return {"assignment_id": a.assignment_id, "vehicle_id": a.vehicle_id,
+            "registration_no": a.vehicle.registration_no, "driver_id": a.driver_id, "driver_name": a.driver.name,
             "start_date": a.start_date.isoformat(), "end_date": a.end_date.isoformat() if a.end_date else None}
 
 

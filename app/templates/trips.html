@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select, modal, form_error %}
+{% block content %}
+<form id="trip-form" class="card card-body mb-4" method="post" action="#" novalidate>
+  <h2 class="h5 mb-3">Create a trip</h2>
+  {{ form_error() }}
+  <div class="row g-3">
+    {{ select('t', 'vehicle_id', 'Vehicle', col='col-12 col-md-6 col-xl-3', numeric=True) }}
+    {{ select('t', 'driver_id', 'Driver', col='col-12 col-md-6 col-xl-3', numeric=True) }}
+    {{ field('t', 'origin', 'Origin', col='col-12 col-md-6 col-xl-3') }}
+    {{ field('t', 'destination', 'Destination', col='col-12 col-md-6 col-xl-3') }}
+    {{ field('t', 'distance', 'Distance (km)', 'number', col='col-6 col-xl-2', dtype='number', attrs={'min': 0, 'step': 0.1}) }}
+    {{ field('t', 'start_date', 'Start date', 'date', col='col-6 col-xl-2') }}
+    {{ field('t', 'end_date', 'End date', 'date', col='col-6 col-xl-2') }}
+    <div class="col-6 col-xl-2 d-flex align-items-end"><button class="btn btn-primary w-100" type="submit">Create trip</button></div>
+  </div>
+  <div class="form-text mt-2">A trip is checked against the vehicle, the driver, their licence, overlapping trips and the driver's assignment. If a check fails, the reason is shown next to the field.</div>
+</form>
+
+<div class="filters d-flex flex-wrap gap-2 align-items-end mb-3">
+  <div><label class="form-label mb-0 small" for="f-status">Status</label>
+    <select class="form-select form-select-sm" id="f-status"><option value="">All</option><option>Planned</option><option>In Progress</option><option>Completed</option><option>Cancelled</option></select></div>
+  <div><label class="form-label mb-0 small" for="f-vehicle">Vehicle</label><select class="form-select form-select-sm" id="f-vehicle"></select></div>
+  <div><label class="form-label mb-0 small" for="f-from">From</label><input class="form-control form-control-sm" type="date" id="f-from"></div>
+  <div><label class="form-label mb-0 small" for="f-to">To</label><input class="form-control form-control-sm" type="date" id="f-to"></div>
+</div>
+<div id="list"></div>
+<div id="pager" class="mt-2"></div>
+
+{% if user.role in ('Administrator', 'Fleet Manager') %}
+{% call modal('edit-modal', 'Edit trip') %}
+  {{ select('e', 'vehicle_id', 'Vehicle', col='col-12', numeric=True) }}
+  {{ select('e', 'driver_id', 'Driver', col='col-12', numeric=True) }}
+  {{ field('e', 'origin', 'Origin') }}
+  {{ field('e', 'destination', 'Destination') }}
+  {{ field('e', 'distance', 'Distance (km)', 'number', col='col-12', dtype='number', attrs={'min': 0, 'step': 0.1}) }}
+  {{ field('e', 'start_date', 'Start date', 'date') }}
+  {{ field('e', 'end_date', 'End date', 'date') }}
+{% endcall %}
+{% endif %}
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/trips.js') }}"></script>{% endblock %}

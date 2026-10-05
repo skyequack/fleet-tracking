@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, form_error %}
+{% block body %}
+<main class="container px-3">
+  <div class="card login-card shadow-sm">
+    <div class="card-body p-4">
+      <h1 class="h4 mb-1">Fleet Management</h1>
+      <p class="text-body-secondary mb-4">Sign in to continue</p>
+      <form id="login-form" method="post" action="/login" novalidate>
+        {{ form_error() }}
+        <div class="row g-3">
+          {{ field('login', 'email', 'Email', 'email', col='col-12', attrs={'autocomplete': 'username', 'autofocus': 'autofocus'}) }}
+          {{ field('login', 'password', 'Password', 'password', col='col-12', attrs={'autocomplete': 'current-password'}) }}
+          <div class="col-12"><button type="submit" class="btn btn-primary w-100">Sign in</button></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toasts"></div>
+<script src="{{ url_for('static', filename='vendor/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

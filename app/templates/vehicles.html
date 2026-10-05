@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select, modal %}
+{% block content %}
+<div class="filters d-flex flex-wrap gap-2 align-items-end mb-3">
+  <div><label class="form-label mb-0 small" for="q">Search</label><input class="form-control form-control-sm" id="q" type="search" placeholder="Registration, make or model"></div>
+  <div><label class="form-label mb-0 small" for="f-status">Status</label>
+    <select class="form-select form-select-sm" id="f-status"><option value="">All</option><option>Active</option><option>Under Maintenance</option><option>Inactive</option></select></div>
+  <div><label class="form-label mb-0 small" for="f-type">Type</label>
+    <select class="form-select form-select-sm" id="f-type"><option value="">All</option><option>Truck</option><option>Van</option><option>Pickup</option><option>Sedan</option></select></div>
+  {% if user.role == 'Administrator' %}<div class="ms-auto"><button class="btn btn-primary btn-sm" id="add" type="button">Add vehicle</button></div>{% endif %}
+</div>
+<div id="list"></div>
+<div id="pager" class="mt-2"></div>
+
+{% if user.role == 'Administrator' %}
+{% call modal('vehicle-modal', 'Vehicle') %}
+  {{ field('v', 'registration_no', 'Registration number') }}
+  {{ select('v', 'type', 'Type', [('Truck','Truck'),('Van','Van'),('Pickup','Pickup'),('Sedan','Sedan')]) }}
+  {{ field('v', 'make', 'Make') }}
+  {{ field('v', 'model', 'Model') }}
+  {{ field('v', 'year', 'Year', 'number', dtype='int', attrs={'min': 1980, 'step': 1}) }}
+  {{ select('v', 'fuel_type', 'Fuel type', [('Diesel','Diesel'),('Petrol','Petrol')]) }}
+  <div class="col-12" id="odometer-group">{{ field('v', 'odometer', 'Starting odometer (km)', 'number', col='col-12', dtype='number', attrs={'min': 0, 'step': 0.1}, optional=True, hint='Later readings come from fuel and maintenance entries.') }}</div>
+{% endcall %}
+{% endif %}
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/vehicles.js') }}"></script>{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select, modal, form_error %}
+{% block content %}
+<div id="licence-banner"></div>
+<div class="filters d-flex flex-wrap gap-2 align-items-end mb-3">
+  <div><label class="form-label mb-0 small" for="q">Search</label><input class="form-control form-control-sm" id="q" type="search" placeholder="Name or licence number"></div>
+  <div><label class="form-label mb-0 small" for="f-status">Status</label>
+    <select class="form-select form-select-sm" id="f-status"><option value="">All</option><option>Active</option><option>Inactive</option></select></div>
+  <div class="form-check ms-2 mb-1"><input class="form-check-input" type="checkbox" id="f-warning"><label class="form-check-label small" for="f-warning">Licence expiring within 30 days</label></div>
+  {% if user.role == 'Administrator' %}<div class="ms-auto"><button class="btn btn-primary btn-sm" id="add" type="button">Add driver</button></div>{% endif %}
+</div>
+<div id="list"></div>
+<div id="pager" class="mt-2"></div>
+
+<h2 class="h4 mt-5 mb-3">Vehicle assignments</h2>
+<form id="assign-form" class="card card-body mb-3" method="post" action="#" novalidate>
+  {{ form_error() }}
+  <div class="row g-3 align-items-end">
+    {{ select('a', 'vehicle_id', 'Vehicle', col='col-12 col-md-3', numeric=True) }}
+    {{ select('a', 'driver_id', 'Driver (active)', col='col-12 col-md-3', numeric=True) }}
+    {{ field('a', 'start_date', 'Start date', 'date', col='col-6 col-md-2') }}
+    {{ field('a', 'end_date', 'End date', 'date', col='col-6 col-md-2', optional=True) }}
+    <div class="col-12 col-md-2"><button class="btn btn-primary w-100" type="submit">Assign driver</button></div>
+  </div>
+</form>
+<div class="filters d-flex flex-wrap gap-2 align-items-end mb-2">
+  <div><label class="form-label mb-0 small" for="af-vehicle">Show vehicle</label><select class="form-select form-select-sm" id="af-vehicle"></select></div>
+</div>
+<div id="a-list"></div>
+<div id="a-pager" class="mt-2"></div>
+
+{% call modal('end-modal', 'End assignment') %}
+  {{ field('e', 'end_date', 'Last day of the assignment', 'date', col='col-12') }}
+{% endcall %}
+
+{% if user.role == 'Administrator' %}
+{% call modal('driver-modal', 'Driver') %}
+  {{ field('d', 'name', 'Name', col='col-12') }}
+  {{ field('d', 'phone', 'Phone', 'tel', optional=True) }}
+  {{ field('d', 'license_no', 'Licence number') }}
+  {{ field('d', 'license_expiry', 'Licence expiry', 'date') }}
+{% endcall %}
+{% endif %}
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/drivers.js') }}"></script>{% endblock %}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · Fleet Management</title>
+  <meta name="csrf-token" content="{{ csrf }}">
+  <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body data-role="{{ user.role if user else '' }}" data-page="{{ page }}">
+{% block body %}
+<nav class="navbar navbar-expand-xl bg-body-tertiary border-bottom">
+  <div class="container-fluid px-3 px-md-4">
+    <a class="navbar-brand fw-semibold" href="/">Fleet Management</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto">
+        {% for item in nav %}
+        <li class="nav-item"><a class="nav-link{{ ' active' if item.key == page }}" href="{{ item.path }}"{% if item.key == page %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <span class="small text-body-secondary text-nowrap">{{ user.name }} · {{ user.role }}</span>
+        <button type="button" class="btn btn-outline-secondary btn-sm text-nowrap" id="logout">Sign out</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<main class="px-3 px-md-4 py-3">
+  <h1 class="h3 mb-3">{{ title }}</h1>
+  <div id="alerts"></div>
+  {% block content %}{% endblock %}
+</main>
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toasts"></div>
+<script src="{{ url_for('static', filename='vendor/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+{% block scripts %}{% endblock %}
+{% endblock %}
+</body>
+</html>
