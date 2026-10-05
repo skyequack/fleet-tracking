@@ -96,6 +96,12 @@ def decimal(lo, hi, places):
     return check
 
 
+def boolean(v):
+    if not isinstance(v, bool):
+        raise ValueError("must be true or false")
+    return v
+
+
 def iso_date(v):
     if not isinstance(v, str) or not _DATE_RE.match(v.strip()):
         raise ValueError("must be a date as YYYY-MM-DD")

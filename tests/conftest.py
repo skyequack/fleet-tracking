@@ -110,6 +110,9 @@ def seed(world):
         models.VehicleAssignment: dict(start_date=date(2026, 1, 1), end_date=None),
         models.Trip: dict(origin="Riyadh", destination="Jeddah", distance=100, start_date=date(2026, 10, 10),
                           end_date=date(2026, 10, 11), status="Planned"),
+        models.FuelRecord: dict(date=date(2026, 9, 1), odometer=1000, quantity=50, price_per_litre=2.18,
+                                total_cost=109.00, full_tank=True),
+        models.MaintenancePart: dict(part_name="Oil filter", quantity=1, unit_cost=10),
         models.MaintenanceRecord: dict(service_type="Oil Change", service_date=date(2026, 10, 10), odometer=1000,
                                        cost=0, status="Scheduled"),
     }

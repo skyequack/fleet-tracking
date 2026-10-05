@@ -3,6 +3,7 @@
 The fuel and maintenance rules are added on their days.
 """
 from datetime import date, timedelta
+from decimal import ROUND_HALF_UP, Decimal
 
 from ..constants import LICENCE_WARNING_DAYS
 
@@ -98,3 +99,68 @@ def assignment_conflict(start, end, others):
         if periods_overlap(start, end or far, o_start, o_end or far):
             return assignment_id
     return None
+
+
+# --- fuel (8.1, 8.7) and maintenance (8.5) --------------------------------------------------------------------
+
+MAINTENANCE_TRANSITIONS = {"Scheduled": ("In Progress",), "In Progress": ("Completed",), "Completed": ()}
+
+
+def fuel_total_cost(quantity, price_per_litre):
+    """8.1: total_cost = quantity x price, to the halala. Always computed here, never taken from the client."""
+    return (Decimal(quantity) * Decimal(price_per_litre)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+
+def odometer_bracket_error(reading, previous, following):
+    """8.7: a reading must be at least the previous one and at most the next one (by date) for that vehicle."""
+    if previous is not None and reading < previous:
+        return f"Odometer {reading} is below the previous reading {previous}"
+    if following is not None and reading > following:
+        return f"Odometer {reading} is above the next reading {following}"
+    return None
+
+
+def maintenance_transition_error(old, new):
+    """8.5: only Scheduled -> In Progress -> Completed; Completed is read-only."""
+    if new in MAINTENANCE_TRANSITIONS[old]:
+        return None
+    allowed = ", ".join(MAINTENANCE_TRANSITIONS[old]) or "nothing (completed records are read-only)"
+    return f"A {old} service cannot become {new}; allowed: {allowed}"
+
+
+def service_start_block(vehicle_status, trips_in_progress):
+    """8.5 / R4: a service cannot start on an inactive vehicle or while the vehicle is out on a trip."""
+    if vehicle_status == "Inactive":
+        return "Vehicle is inactive"
+    if trips_in_progress:
+        return "Vehicle has a trip in progress; complete or cancel it before starting a service"
+    return None
+
+
+def vehicle_status_after_completion(vehicle_status, other_services_in_progress):
+    """8.5 / R4: back to Active only if no other service is still running and an admin has not made it Inactive."""
+    if vehicle_status == "Under Maintenance" and not other_services_in_progress:
+        return "Active"
+    return vehicle_status
+
+
+def parts_total_error(parts_total, cost):
+    """8.5: parts itemise the invoice, so their total may not exceed it."""
+    if parts_total > cost:
+        return f"Parts total {parts_total} exceeds the record cost {cost}"
+    return None
+
+
+def next_service_date(service_type, service_date, intervals, avg_daily_km):
+    """8.5: the earlier of service_date + day limit and service_date + (km limit / average daily km).
+
+    `intervals` maps type -> (max_days, max_km); None means no limit on that axis. A type that is not listed
+    (Breakdown Repair) has no next service. Without trip history (avg_daily_km falsy) only the day limit applies.
+    """
+    if service_type not in intervals:
+        return None
+    max_days, max_km = intervals[service_type]
+    days = max_days
+    if max_km is not None and avg_daily_km and avg_daily_km > 0:
+        days = min(days, int(max_km / avg_daily_km))
+    return service_date + timedelta(days=days)

@@ -61,6 +61,11 @@ class Config:
     CURRENCY = "SAR"
     FUEL_PRICES = {"Diesel": 1.66, "Petrol": 2.18}
 
+    # A service starts "today"; Planned trips inside this many days are listed as warnings (8.5).
+    SERVICE_WINDOW_DAYS = 7
+    # next_service_date projects the km limit at the average daily km of this many trailing days (8.5).
+    AVG_KM_WINDOW_DAYS = 90
+
     # Next-service rule: service_type -> (max days, max km). The earlier limit wins.
     # None means "no limit on that axis"; Breakdown Repair has no next service.
     SERVICE_INTERVALS = {
