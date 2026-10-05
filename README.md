@@ -44,6 +44,8 @@ Operators start at Trips; Administrators and Fleet Managers start at the Dashboa
 
 Nothing in Chapters 6 and 7 is typed by hand: both scripts read the live database, the trained model and the test run. The original `.docx` is never modified. The page numbers in the contents lists are plain text in the original, so update them in Word after opening the refreshed file.
 
+Screenshots of the nine screens for the report appendix (Table 4.3) are in `report/screenshots/`. To retake them, start the app and run `node scripts/capture_screenshots.mjs`; it drives an installed Chrome or Edge in the background (light mode, 1440 px wide, 2x density) and needs no extra packages.
+
 `GET /api/health` is a public check that returns the database and model status and no data (503 if the database is down, 200 with `degraded` if only the model is missing).
 
 ## Demo logins
