@@ -1,0 +1,879 @@
+{
+  "dashboard_seconds": 0.063,
+  "window": {
+    "from": "2025-10-01",
+    "to": "2026-09-30",
+    "days": 365
+  },
+  "counts": {
+    "vehicles": 50,
+    "drivers": 56,
+    "trips": 7285,
+    "fuel_records": 2074,
+    "maintenance_records": 429,
+    "maintenance_parts": 747,
+    "by_type": {
+      "Truck": 14,
+      "Van": 14,
+      "Pickup": 14,
+      "Sedan": 8
+    }
+  },
+  "cards": {
+    "total_vehicles": 50,
+    "active": 43,
+    "under_maintenance": 7,
+    "total_distance_km": 1252029.0,
+    "fuel_cost": 478884.17,
+    "maintenance_cost": 171150.05
+  },
+  "strip": {
+    "fuel_litres": 266754.0,
+    "fuel_efficiency_km_per_l": 4.69,
+    "cost_per_km": 0.519,
+    "utilisation_pct": 67.7
+  },
+  "fleet": {
+    "distance_km": 1252029.3999999997,
+    "fuel_litres": 266753.5,
+    "fuel_cost": 478884.17000000004,
+    "maintenance_cost": 171150.05000000002,
+    "km_per_l": 4.693581902393032,
+    "cost_per_km": 0.5191844696298668,
+    "utilisation_pct": 67.68767123287671
+  },
+  "types": [
+    {
+      "type": "Truck",
+      "vehicles": 14,
+      "distance_km": 688560.0,
+      "fuel_litres": 197382.0,
+      "fuel_cost": 327653.76,
+      "maintenance_cost": 50600.03,
+      "km_per_l": 3.49,
+      "cost_per_km": 0.549,
+      "utilisation_pct": 67.6
+    },
+    {
+      "type": "Van",
+      "vehicles": 14,
+      "distance_km": 225891.0,
+      "fuel_litres": 27595.0,
+      "fuel_cost": 60157.71,
+      "maintenance_cost": 60950.03,
+      "km_per_l": 8.19,
+      "cost_per_km": 0.536,
+      "utilisation_pct": 67.3
+    },
+    {
+      "type": "Pickup",
+      "vehicles": 14,
+      "distance_km": 254223.0,
+      "fuel_litres": 35062.0,
+      "fuel_cost": 76434.74,
+      "maintenance_cost": 32150.0,
+      "km_per_l": 7.25,
+      "cost_per_km": 0.427,
+      "utilisation_pct": 68.2
+    },
+    {
+      "type": "Sedan",
+      "vehicles": 8,
+      "distance_km": 83356.0,
+      "fuel_litres": 6715.0,
+      "fuel_cost": 14637.96,
+      "maintenance_cost": 27449.99,
+      "km_per_l": 12.41,
+      "cost_per_km": 0.505,
+      "utilisation_pct": 67.6
+    }
+  ],
+  "months": [
+    {
+      "month": "2025-10",
+      "fuel_litres": 19579.6,
+      "fuel_cost": 35091.62,
+      "maintenance_cost": 6822.79,
+      "distance_km": 101520.1
+    },
+    {
+      "month": "2025-11",
+      "fuel_litres": 22059.7,
+      "fuel_cost": 39554.98,
+      "maintenance_cost": 10674.54,
+      "distance_km": 103490.8
+    },
+    {
+      "month": "2025-12",
+      "fuel_litres": 22848.8,
+      "fuel_cost": 40869.72,
+      "maintenance_cost": 16536.59,
+      "distance_km": 107086.0
+    },
+    {
+      "month": "2026-01",
+      "fuel_litres": 21257.7,
+      "fuel_cost": 38372.63,
+      "maintenance_cost": 15590.82,
+      "distance_km": 103380.7
+    },
+    {
+      "month": "2026-02",
+      "fuel_litres": 20649.8,
+      "fuel_cost": 37130.16,
+      "maintenance_cost": 7778.27,
+      "distance_km": 95668.6
+    },
+    {
+      "month": "2026-03",
+      "fuel_litres": 22299.0,
+      "fuel_cost": 39964.15,
+      "maintenance_cost": 9409.32,
+      "distance_km": 107875.4
+    },
+    {
+      "month": "2026-04",
+      "fuel_litres": 21583.1,
+      "fuel_cost": 38902.82,
+      "maintenance_cost": 19276.73,
+      "distance_km": 102383.2
+    },
+    {
+      "month": "2026-05",
+      "fuel_litres": 23134.1,
+      "fuel_cost": 41531.57,
+      "maintenance_cost": 15511.22,
+      "distance_km": 109862.9
+    },
+    {
+      "month": "2026-06",
+      "fuel_litres": 22990.7,
+      "fuel_cost": 41301.63,
+      "maintenance_cost": 15353.09,
+      "distance_km": 103056.1
+    },
+    {
+      "month": "2026-07",
+      "fuel_litres": 25131.7,
+      "fuel_cost": 45077.91,
+      "maintenance_cost": 20375.2,
+      "distance_km": 109635.1
+    },
+    {
+      "month": "2026-08",
+      "fuel_litres": 22714.6,
+      "fuel_cost": 40917.17,
+      "maintenance_cost": 14574.32,
+      "distance_km": 103833.4
+    },
+    {
+      "month": "2026-09",
+      "fuel_litres": 22504.8,
+      "fuel_cost": 40169.81,
+      "maintenance_cost": 19247.16,
+      "distance_km": 104237.1
+    }
+  ],
+  "top10": [
+    {
+      "vehicle": "VUJ 7291",
+      "type": "Sedan",
+      "cost_per_km": 0.8023535044403972,
+      "km_per_l": 12.65407460204324,
+      "maintenance_cost": 6711.7
+    },
+    {
+      "vehicle": "VGU 4006",
+      "type": "Van",
+      "cost_per_km": 0.7106800929711493,
+      "km_per_l": 8.406828650453855,
+      "maintenance_cost": 7010.4800000000005
+    },
+    {
+      "vehicle": "RVV 8244",
+      "type": "Sedan",
+      "cost_per_km": 0.69492503340096,
+      "km_per_l": 11.763096623981374,
+      "maintenance_cost": 5149.24
+    },
+    {
+      "vehicle": "TBH 7209",
+      "type": "Van",
+      "cost_per_km": 0.656940749397051,
+      "km_per_l": 8.038213441658048,
+      "maintenance_cost": 6205.57
+    },
+    {
+      "vehicle": "GXH 5342",
+      "type": "Van",
+      "cost_per_km": 0.6391156800327094,
+      "km_per_l": 8.006257043850749,
+      "maintenance_cost": 6280.31
+    },
+    {
+      "vehicle": "DZK 5562",
+      "type": "Van",
+      "cost_per_km": 0.6303704165627337,
+      "km_per_l": 7.735686134520669,
+      "maintenance_cost": 5589.51
+    },
+    {
+      "vehicle": "KKG 2679",
+      "type": "Truck",
+      "cost_per_km": 0.6107926247091258,
+      "km_per_l": 3.1704304742286142,
+      "maintenance_cost": 4219.67
+    },
+    {
+      "vehicle": "DJK 9279",
+      "type": "Truck",
+      "cost_per_km": 0.5930169946047186,
+      "km_per_l": 3.39181079693892,
+      "maintenance_cost": 4867.85
+    },
+    {
+      "vehicle": "UDT 7252",
+      "type": "Truck",
+      "cost_per_km": 0.5874553528932152,
+      "km_per_l": 3.41541919341843,
+      "maintenance_cost": 4901.15
+    },
+    {
+      "vehicle": "ETD 5803",
+      "type": "Truck",
+      "cost_per_km": 0.586253200357863,
+      "km_per_l": 3.3009455050235266,
+      "maintenance_cost": 4044.15
+    }
+  ],
+  "model": {
+    "class_weight": null,
+    "stratified_split": {
+      "accuracy": 0.7083,
+      "per_class": {
+        "LOW": {
+          "precision": 0.7719,
+          "recall": 0.88,
+          "f1-score": 0.8224,
+          "support": 50
+        },
+        "MEDIUM": {
+          "precision": 0.4848,
+          "recall": 0.4848,
+          "f1-score": 0.4848,
+          "support": 33
+        },
+        "HIGH": {
+          "precision": 0.8333,
+          "recall": 0.6757,
+          "f1-score": 0.7463,
+          "support": 37
+        }
+      },
+      "confusion_matrix": [
+        [
+          44,
+          5,
+          1
+        ],
+        [
+          13,
+          16,
+          4
+        ],
+        [
+          0,
+          12,
+          25
+        ]
+      ],
+      "train_rows": 480,
+      "test_rows": 120
+    },
+    "grouped_split": {
+      "accuracy": 0.8,
+      "per_class": {
+        "LOW": {
+          "precision": 0.8235,
+          "recall": 0.8936,
+          "f1-score": 0.8571,
+          "support": 47
+        },
+        "MEDIUM": {
+          "precision": 0.6579,
+          "recall": 0.7143,
+          "f1-score": 0.6849,
+          "support": 35
+        },
+        "HIGH": {
+          "precision": 0.9355,
+          "recall": 0.7632,
+          "f1-score": 0.8406,
+          "support": 38
+        }
+      },
+      "confusion_matrix": [
+        [
+          42,
+          5,
+          0
+        ],
+        [
+          8,
+          25,
+          2
+        ],
+        [
+          1,
+          8,
+          29
+        ]
+      ],
+      "train_rows": 480,
+      "test_rows": 120,
+      "test_vehicles": 10
+    },
+    "feature_importance": {
+      "current_mileage": 0.2491,
+      "km_since_service": 0.2288,
+      "vehicle_age": 0.1573,
+      "prev_maint_cost": 0.0935,
+      "avg_fuel_l_per_100km": 0.0917,
+      "avg_monthly_km": 0.08,
+      "maintenance_events": 0.0666,
+      "prev_breakdowns": 0.033
+    },
+    "model_file": "model.joblib",
+    "sha256": "b16a8564b2e21fcd74bcf5ea5bcfb9a2186b1a0b1e1fc4cd4e7a377540b6e3a5",
+    "features": [
+      "vehicle_age",
+      "current_mileage",
+      "km_since_service",
+      "prev_breakdowns",
+      "maintenance_events",
+      "avg_monthly_km",
+      "avg_fuel_l_per_100km",
+      "prev_maint_cost"
+    ],
+    "classes": [
+      "LOW",
+      "MEDIUM",
+      "HIGH"
+    ],
+    "hyperparameters": {
+      "n_estimators": 200,
+      "max_depth": 8,
+      "random_state": 42
+    },
+    "random_state": 42,
+    "trained_at": "2026-10-05T07:09:43+00:00",
+    "snapshots": {
+      "dates": [
+        "2025-10-31",
+        "2025-11-30",
+        "2025-12-31",
+        "2026-01-31",
+        "2026-02-28",
+        "2026-03-31",
+        "2026-04-30",
+        "2026-05-31",
+        "2026-06-30",
+        "2026-07-31",
+        "2026-08-31",
+        "2026-09-30"
+      ],
+      "rows": 600,
+      "vehicles": 50,
+      "class_counts": {
+        "LOW": 252,
+        "MEDIUM": 163,
+        "HIGH": 185
+      }
+    },
+    "dataset_fingerprint": "95930c6e89ee71ee",
+    "label_source": "SYNTHETIC. risk score = 0.3 x vehicle_age/8 + 0.25 x current_mileage/250000 + 0.3 x km_since_service/5000 + 0.15 x prev_breakdowns/2, plus Gaussian noise (sd 0.1); LOW below 0.4, MEDIUM below 0.6, otherwise HIGH. The labels come from a formula over the model's own features, so the model learns that formula. This is not real failure data and the results demonstrate the method only.",
+    "libraries": {
+      "python": "3.13.4",
+      "scikit-learn": "1.9.1",
+      "pandas": "3.0.6",
+      "numpy": "2.5.3",
+      "joblib": "1.6.0"
+    }
+  },
+  "prediction": {
+    "as_of": "2026-10-05",
+    "rows": [
+      {
+        "vehicle": "ZHZ 2743",
+        "risk": "HIGH",
+        "p_high": 0.9941666666666665,
+        "age": 10.0,
+        "mileage": 555795.8,
+        "breakdowns": 1.0,
+        "km_since_service": 0.0
+      },
+      {
+        "vehicle": "DJK 9279",
+        "risk": "HIGH",
+        "p_high": 0.9928787878787878,
+        "age": 9.0,
+        "mileage": 404353.5,
+        "breakdowns": 2.0,
+        "km_since_service": 1009.2000000000116
+      },
+      {
+        "vehicle": "UDT 7252",
+        "risk": "HIGH",
+        "p_high": 0.9928787878787878,
+        "age": 9.0,
+        "mileage": 418839.1,
+        "breakdowns": 2.0,
+        "km_since_service": 3179.0999999999767
+      },
+      {
+        "vehicle": "DJZ 5345",
+        "risk": "HIGH",
+        "p_high": 0.9678718919968919,
+        "age": 10.0,
+        "mileage": 205904.3,
+        "breakdowns": 3.0,
+        "km_since_service": 3693.5999999999767
+      },
+      {
+        "vehicle": "ELR 2827",
+        "risk": "HIGH",
+        "p_high": 0.9654312354312354,
+        "age": 7.0,
+        "mileage": 361271.7,
+        "breakdowns": 3.0,
+        "km_since_service": 928.7999999999884
+      },
+      {
+        "vehicle": "AKK 1117",
+        "risk": "HIGH",
+        "p_high": 0.9184453706695966,
+        "age": 8.0,
+        "mileage": 164054.8,
+        "breakdowns": 0.0,
+        "km_since_service": 5132.1999999999825
+      },
+      {
+        "vehicle": "KKG 2679",
+        "risk": "HIGH",
+        "p_high": 0.9154493966178747,
+        "age": 4.0,
+        "mileage": 208513.2,
+        "breakdowns": 1.0,
+        "km_since_service": 8835.700000000012
+      },
+      {
+        "vehicle": "RED 7224",
+        "risk": "HIGH",
+        "p_high": 0.8972290209790209,
+        "age": 5.0,
+        "mileage": 332717.7,
+        "breakdowns": 2.0,
+        "km_since_service": 1124.0
+      },
+      {
+        "vehicle": "HSS 4432",
+        "risk": "HIGH",
+        "p_high": 0.8911089892182568,
+        "age": 5.0,
+        "mileage": 248889.9,
+        "breakdowns": 0.0,
+        "km_since_service": 4332.799999999988
+      },
+      {
+        "vehicle": "ETD 5803",
+        "risk": "HIGH",
+        "p_high": 0.8216063230248011,
+        "age": 4.0,
+        "mileage": 232265.1,
+        "breakdowns": 1.0,
+        "km_since_service": 2872.899999999994
+      },
+      {
+        "vehicle": "HVN 9666",
+        "risk": "HIGH",
+        "p_high": 0.7257682784297443,
+        "age": 9.0,
+        "mileage": 217636.1,
+        "breakdowns": 1.0,
+        "km_since_service": 2287.399999999994
+      },
+      {
+        "vehicle": "LEE 3546",
+        "risk": "HIGH",
+        "p_high": 0.6141922894540036,
+        "age": 6.0,
+        "mileage": 114545.2,
+        "breakdowns": 1.0,
+        "km_since_service": 4042.300000000003
+      },
+      {
+        "vehicle": "SHZ 1009",
+        "risk": "HIGH",
+        "p_high": 0.5243294844253492,
+        "age": 4.0,
+        "mileage": 64084.0,
+        "breakdowns": 1.0,
+        "km_since_service": 4322.199999999997
+      },
+      {
+        "vehicle": "DZK 5562",
+        "risk": "HIGH",
+        "p_high": 0.5030421457109729,
+        "age": 7.0,
+        "mileage": 113039.6,
+        "breakdowns": 1.0,
+        "km_since_service": 2526.0
+      },
+      {
+        "vehicle": "SZT 9785",
+        "risk": "HIGH",
+        "p_high": 0.4794226264965482,
+        "age": 6.0,
+        "mileage": 113063.1,
+        "breakdowns": 1.0,
+        "km_since_service": 6283.200000000012
+      },
+      {
+        "vehicle": "SNK 4652",
+        "risk": "HIGH",
+        "p_high": 0.45332343780727613,
+        "age": 7.0,
+        "mileage": 144512.6,
+        "breakdowns": 1.0,
+        "km_since_service": 267.6000000000058
+      },
+      {
+        "vehicle": "VGU 4006",
+        "risk": "MEDIUM",
+        "p_high": 0.38533547632323994,
+        "age": 8.0,
+        "mileage": 137052.9,
+        "breakdowns": 1.0,
+        "km_since_service": 324.29999999998836
+      },
+      {
+        "vehicle": "HDD 4853",
+        "risk": "MEDIUM",
+        "p_high": 0.31340902422982764,
+        "age": 8.0,
+        "mileage": 99300.6,
+        "breakdowns": 1.0,
+        "km_since_service": 1060.6000000000058
+      },
+      {
+        "vehicle": "TBH 7209",
+        "risk": "MEDIUM",
+        "p_high": 0.29832202084677384,
+        "age": 8.0,
+        "mileage": 155915.4,
+        "breakdowns": 1.0,
+        "km_since_service": 438.79999999998836
+      },
+      {
+        "vehicle": "GXH 5342",
+        "risk": "MEDIUM",
+        "p_high": 0.2891180070410021,
+        "age": 9.0,
+        "mileage": 125321.8,
+        "breakdowns": 1.0,
+        "km_since_service": 866.1999999999971
+      },
+      {
+        "vehicle": "XKX 7669",
+        "risk": "MEDIUM",
+        "p_high": 0.22957165542834107,
+        "age": 8.0,
+        "mileage": 137407.4,
+        "breakdowns": 0.0,
+        "km_since_service": 2965.899999999994
+      },
+      {
+        "vehicle": "LHE 7267",
+        "risk": "MEDIUM",
+        "p_high": 0.18682989823009172,
+        "age": 6.0,
+        "mileage": 135567.8,
+        "breakdowns": 1.0,
+        "km_since_service": 1317.1999999999825
+      },
+      {
+        "vehicle": "KBK 2290",
+        "risk": "MEDIUM",
+        "p_high": 0.1846508696195945,
+        "age": 8.0,
+        "mileage": 156439.5,
+        "breakdowns": 0.0,
+        "km_since_service": 1044.8999999999942
+      },
+      {
+        "vehicle": "KVL 1106",
+        "risk": "MEDIUM",
+        "p_high": 0.17102170321521007,
+        "age": 3.0,
+        "mileage": 169453.3,
+        "breakdowns": 0.0,
+        "km_since_service": 4119.799999999988
+      },
+      {
+        "vehicle": "NKJ 3414",
+        "risk": "MEDIUM",
+        "p_high": 0.12905581479743009,
+        "age": 9.0,
+        "mileage": 106126.9,
+        "breakdowns": 0.0,
+        "km_since_service": 1183.0
+      },
+      {
+        "vehicle": "BEB 7596",
+        "risk": "LOW",
+        "p_high": 0.08010875303738892,
+        "age": 5.0,
+        "mileage": 88081.2,
+        "breakdowns": 1.0,
+        "km_since_service": 1354.699999999997
+      },
+      {
+        "vehicle": "JXT 8517",
+        "risk": "LOW",
+        "p_high": 0.07601923076923076,
+        "age": 1.0,
+        "mileage": 74932.8,
+        "breakdowns": 0.0,
+        "km_since_service": 6190.600000000006
+      },
+      {
+        "vehicle": "VUJ 7291",
+        "risk": "LOW",
+        "p_high": 0.06332750357750358,
+        "age": 5.0,
+        "mileage": 51052.0,
+        "breakdowns": 2.0,
+        "km_since_service": 958.8000000000029
+      },
+      {
+        "vehicle": "GNV 6180",
+        "risk": "MEDIUM",
+        "p_high": 0.06222577171752208,
+        "age": 3.0,
+        "mileage": 83773.8,
+        "breakdowns": 1.0,
+        "km_since_service": 3866.199999999997
+      },
+      {
+        "vehicle": "RVV 8244",
+        "risk": "MEDIUM",
+        "p_high": 0.061527094457934625,
+        "age": 6.0,
+        "mileage": 63493.2,
+        "breakdowns": 2.0,
+        "km_since_service": 415.09999999999854
+      },
+      {
+        "vehicle": "LHV 8007",
+        "risk": "MEDIUM",
+        "p_high": 0.0475347748863664,
+        "age": 6.0,
+        "mileage": 116825.1,
+        "breakdowns": 0.0,
+        "km_since_service": 1534.4000000000087
+      },
+      {
+        "vehicle": "JSU 2146",
+        "risk": "LOW",
+        "p_high": 0.031317621920563095,
+        "age": 4.0,
+        "mileage": 57685.5,
+        "breakdowns": 0.0,
+        "km_since_service": 3197.0
+      },
+      {
+        "vehicle": "RBB 8811",
+        "risk": "LOW",
+        "p_high": 0.030190680860048728,
+        "age": 4.0,
+        "mileage": 55584.6,
+        "breakdowns": 1.0,
+        "km_since_service": 1787.2999999999956
+      },
+      {
+        "vehicle": "KHV 7216",
+        "risk": "LOW",
+        "p_high": 0.02953116220619808,
+        "age": 3.0,
+        "mileage": 181644.2,
+        "breakdowns": 0.0,
+        "km_since_service": 356.5
+      },
+      {
+        "vehicle": "BKB 6168",
+        "risk": "LOW",
+        "p_high": 0.023391867119808295,
+        "age": 3.0,
+        "mileage": 176264.3,
+        "breakdowns": 0.0,
+        "km_since_service": 0.0
+      },
+      {
+        "vehicle": "TSK 3266",
+        "risk": "LOW",
+        "p_high": 0.013787855821029555,
+        "age": 3.0,
+        "mileage": 165357.9,
+        "breakdowns": 0.0,
+        "km_since_service": 676.5
+      },
+      {
+        "vehicle": "BKN 2307",
+        "risk": "LOW",
+        "p_high": 0.013074783876254466,
+        "age": 2.0,
+        "mileage": 140744.4,
+        "breakdowns": 0.0,
+        "km_since_service": 425.0
+      },
+      {
+        "vehicle": "ZXL 1832",
+        "risk": "LOW",
+        "p_high": 0.01145349009168885,
+        "age": 3.0,
+        "mileage": 73502.2,
+        "breakdowns": 2.0,
+        "km_since_service": 0.0
+      },
+      {
+        "vehicle": "UXG 4111",
+        "risk": "LOW",
+        "p_high": 0.010384615384615386,
+        "age": 1.0,
+        "mileage": 21779.7,
+        "breakdowns": 0.0,
+        "km_since_service": 2621.600000000002
+      },
+      {
+        "vehicle": "NZN 7691",
+        "risk": "LOW",
+        "p_high": 0.010227040816326532,
+        "age": 4.0,
+        "mileage": 43175.8,
+        "breakdowns": 0.0,
+        "km_since_service": 157.60000000000582
+      },
+      {
+        "vehicle": "DUZ 6183",
+        "risk": "LOW",
+        "p_high": 0.009461465729424346,
+        "age": 4.0,
+        "mileage": 87364.3,
+        "breakdowns": 0.0,
+        "km_since_service": 286.6000000000058
+      },
+      {
+        "vehicle": "BEU 6663",
+        "risk": "LOW",
+        "p_high": 0.007027939380880557,
+        "age": 2.0,
+        "mileage": 47904.3,
+        "breakdowns": 0.0,
+        "km_since_service": 3828.7000000000044
+      },
+      {
+        "vehicle": "HDN 9445",
+        "risk": "LOW",
+        "p_high": 0.0023085516257785165,
+        "age": 3.0,
+        "mileage": 32266.3,
+        "breakdowns": 0.0,
+        "km_since_service": 2928.5999999999985
+      },
+      {
+        "vehicle": "EBA 2528",
+        "risk": "LOW",
+        "p_high": 0.0012403381642512076,
+        "age": 1.0,
+        "mileage": 27397.2,
+        "breakdowns": 1.0,
+        "km_since_service": 46.60000000000218
+      },
+      {
+        "vehicle": "JNT 7118",
+        "risk": "LOW",
+        "p_high": 0.0012037037037037036,
+        "age": 1.0,
+        "mileage": 21124.1,
+        "breakdowns": 0.0,
+        "km_since_service": 1326.0999999999985
+      },
+      {
+        "vehicle": "KHH 7755",
+        "risk": "LOW",
+        "p_high": 0.0010714285714285713,
+        "age": 2.0,
+        "mileage": 47158.6,
+        "breakdowns": 0.0,
+        "km_since_service": 213.5
+      },
+      {
+        "vehicle": "JLB 8144",
+        "risk": "LOW",
+        "p_high": 0.0003888888888888889,
+        "age": 4.0,
+        "mileage": 59885.4,
+        "breakdowns": 0.0,
+        "km_since_service": 2131.800000000003
+      },
+      {
+        "vehicle": "BSG 8041",
+        "risk": "LOW",
+        "p_high": 0.0002777777777777778,
+        "age": 1.0,
+        "mileage": 25461.1,
+        "breakdowns": 0.0,
+        "km_since_service": 1438.2999999999993
+      },
+      {
+        "vehicle": "SJK 2684",
+        "risk": "LOW",
+        "p_high": 0.0,
+        "age": 2.0,
+        "mileage": 41327.0,
+        "breakdowns": 0.0,
+        "km_since_service": 538.6999999999971
+      },
+      {
+        "vehicle": "THN 7653",
+        "risk": "LOW",
+        "p_high": 0.0,
+        "age": 4.0,
+        "mileage": 48476.3,
+        "breakdowns": 0.0,
+        "km_since_service": 534.6000000000058
+      }
+    ],
+    "summary": {
+      "LOW": 22,
+      "MEDIUM": 12,
+      "HIGH": 16
+    }
+  },
+  "tests": {
+    "exit_code": 0,
+    "levels": {
+      "unit": {
+        "passed": 106,
+        "failed": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "passed": 224,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "summary_line": "330 passed in 93.60s (0:01:33)"
+  }
+}
