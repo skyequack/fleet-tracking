@@ -1,0 +1,154 @@
+{
+  "class_weight": null,
+  "stratified_split": {
+    "accuracy": 0.7083,
+    "per_class": {
+      "LOW": {
+        "precision": 0.7719,
+        "recall": 0.88,
+        "f1-score": 0.8224,
+        "support": 50
+      },
+      "MEDIUM": {
+        "precision": 0.4848,
+        "recall": 0.4848,
+        "f1-score": 0.4848,
+        "support": 33
+      },
+      "HIGH": {
+        "precision": 0.8333,
+        "recall": 0.6757,
+        "f1-score": 0.7463,
+        "support": 37
+      }
+    },
+    "confusion_matrix": [
+      [
+        44,
+        5,
+        1
+      ],
+      [
+        13,
+        16,
+        4
+      ],
+      [
+        0,
+        12,
+        25
+      ]
+    ],
+    "train_rows": 480,
+    "test_rows": 120
+  },
+  "grouped_split": {
+    "accuracy": 0.8,
+    "per_class": {
+      "LOW": {
+        "precision": 0.8235,
+        "recall": 0.8936,
+        "f1-score": 0.8571,
+        "support": 47
+      },
+      "MEDIUM": {
+        "precision": 0.6579,
+        "recall": 0.7143,
+        "f1-score": 0.6849,
+        "support": 35
+      },
+      "HIGH": {
+        "precision": 0.9355,
+        "recall": 0.7632,
+        "f1-score": 0.8406,
+        "support": 38
+      }
+    },
+    "confusion_matrix": [
+      [
+        42,
+        5,
+        0
+      ],
+      [
+        8,
+        25,
+        2
+      ],
+      [
+        1,
+        8,
+        29
+      ]
+    ],
+    "train_rows": 480,
+    "test_rows": 120,
+    "test_vehicles": 10
+  },
+  "feature_importance": {
+    "current_mileage": 0.2491,
+    "km_since_service": 0.2288,
+    "vehicle_age": 0.1573,
+    "prev_maint_cost": 0.0935,
+    "avg_fuel_l_per_100km": 0.0917,
+    "avg_monthly_km": 0.08,
+    "maintenance_events": 0.0666,
+    "prev_breakdowns": 0.033
+  },
+  "model_file": "model.joblib",
+  "sha256": "b16a8564b2e21fcd74bcf5ea5bcfb9a2186b1a0b1e1fc4cd4e7a377540b6e3a5",
+  "features": [
+    "vehicle_age",
+    "current_mileage",
+    "km_since_service",
+    "prev_breakdowns",
+    "maintenance_events",
+    "avg_monthly_km",
+    "avg_fuel_l_per_100km",
+    "prev_maint_cost"
+  ],
+  "classes": [
+    "LOW",
+    "MEDIUM",
+    "HIGH"
+  ],
+  "hyperparameters": {
+    "n_estimators": 200,
+    "max_depth": 8,
+    "random_state": 42
+  },
+  "random_state": 42,
+  "trained_at": "2026-10-05T07:09:43+00:00",
+  "snapshots": {
+    "dates": [
+      "2025-10-31",
+      "2025-11-30",
+      "2025-12-31",
+      "2026-01-31",
+      "2026-02-28",
+      "2026-03-31",
+      "2026-04-30",
+      "2026-05-31",
+      "2026-06-30",
+      "2026-07-31",
+      "2026-08-31",
+      "2026-09-30"
+    ],
+    "rows": 600,
+    "vehicles": 50,
+    "class_counts": {
+      "LOW": 252,
+      "MEDIUM": 163,
+      "HIGH": 185
+    }
+  },
+  "dataset_fingerprint": "95930c6e89ee71ee",
+  "label_source": "SYNTHETIC. risk score = 0.3 x vehicle_age/8 + 0.25 x current_mileage/250000 + 0.3 x km_since_service/5000 + 0.15 x prev_breakdowns/2, plus Gaussian noise (sd 0.1); LOW below 0.4, MEDIUM below 0.6, otherwise HIGH. The labels come from a formula over the model's own features, so the model learns that formula. This is not real failure data and the results demonstrate the method only.",
+  "libraries": {
+    "python": "3.13.4",
+    "scikit-learn": "1.9.1",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "joblib": "1.6.0"
+  }
+}
