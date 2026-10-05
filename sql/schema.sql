@@ -9,7 +9,9 @@ CREATE TABLE users (
     email         VARCHAR(150) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     role          VARCHAR(20)  NOT NULL,
+    status        VARCHAR(10)  NOT NULL DEFAULT 'Active',
     CONSTRAINT uq_users_email UNIQUE (email),
+    CONSTRAINT ck_users_status CHECK (status IN ('Active','Inactive')),
     CONSTRAINT ck_users_role CHECK (role IN ('Administrator','Fleet Manager','Operator'))
 ) ENGINE=InnoDB;
 
@@ -64,13 +66,16 @@ CREATE TABLE trips (
     start_date  DATE         NOT NULL,
     end_date    DATE         NOT NULL,
     status      VARCHAR(15)  NOT NULL DEFAULT 'Planned',
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by  INT NULL,
+    CONSTRAINT fk_trips_creator FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE RESTRICT,
     CONSTRAINT fk_trips_vehicle FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE RESTRICT,
     CONSTRAINT fk_trips_driver  FOREIGN KEY (driver_id)  REFERENCES drivers(driver_id)   ON DELETE RESTRICT,
     CONSTRAINT ck_trips_distance CHECK (distance >= 0),
     CONSTRAINT ck_trips_dates CHECK (end_date >= start_date),
     CONSTRAINT ck_trips_status CHECK (status IN ('Planned','In Progress','Completed','Cancelled')),
     INDEX idx_trips_vehicle_dates (vehicle_id, start_date, end_date),
-    INDEX idx_trips_driver (driver_id)
+    INDEX idx_trips_driver_dates (driver_id, start_date, end_date)
 ) ENGINE=InnoDB;
 
 CREATE TABLE fuel_records (
@@ -82,10 +87,14 @@ CREATE TABLE fuel_records (
     price_per_litre DECIMAL(6,2)  NOT NULL,
     total_cost      DECIMAL(10,2) NOT NULL,
     full_tank       BOOLEAN       NOT NULL DEFAULT TRUE,
+    created_at      TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by      INT           NULL,
+    CONSTRAINT fk_fuel_creator FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE RESTRICT,
     CONSTRAINT fk_fuel_vehicle FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE RESTRICT,
     CONSTRAINT ck_fuel_qty CHECK (quantity > 0),
     CONSTRAINT ck_fuel_price CHECK (price_per_litre > 0),
     CONSTRAINT ck_fuel_odo CHECK (odometer >= 0),
+    CONSTRAINT ck_fuel_total CHECK (ABS(total_cost - quantity * price_per_litre) <= 0.005),
     INDEX idx_fuel_vehicle_date (vehicle_id, date)
 ) ENGINE=InnoDB;
 
@@ -99,13 +108,17 @@ CREATE TABLE maintenance_records (
     technician        VARCHAR(100),
     next_service_date DATE          NULL,
     status            VARCHAR(15)   NOT NULL DEFAULT 'Scheduled',
+    created_at        TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by        INT           NULL,
+    CONSTRAINT fk_maint_creator FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE RESTRICT,
     CONSTRAINT fk_maint_vehicle FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE RESTRICT,
     CONSTRAINT ck_maint_cost CHECK (cost >= 0),
     CONSTRAINT ck_maint_odo CHECK (odometer >= 0),
     CONSTRAINT ck_maint_type CHECK (service_type IN
         ('Routine Service','Oil Change','Tyres','Brakes','Breakdown Repair','Inspection')),
     CONSTRAINT ck_maint_status CHECK (status IN ('Scheduled','In Progress','Completed')),
-    INDEX idx_maint_vehicle_date (vehicle_id, service_date)
+    INDEX idx_maint_vehicle_date (vehicle_id, service_date),
+    INDEX idx_maint_status (status, vehicle_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE maintenance_parts (

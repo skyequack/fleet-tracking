@@ -17,6 +17,8 @@ docker compose up -d                   # MySQL 8.0 on port 3306 (needs Docker De
 
 `generate_dummy_data.py --dry-run` prints the totals without touching the database.
 
+`init_db.py` refuses to touch `fleet_db` once it holds data, because `schema.sql` drops every table. After a schema change, run `init_db.py --reset` and then the generator again. `requirements.lock.txt` holds the exact versions used for the results (`pip install -r requirements.lock.txt` to reproduce them).
+
 ## Demo logins
 
 | Role | Email | Password |
@@ -25,4 +27,10 @@ docker compose up -d                   # MySQL 8.0 on port 3306 (needs Docker De
 | Fleet Manager | manager@fleet.local | Manager@123 |
 | Operator | operator@fleet.local | Operator@123 |
 
-Passwords are stored as salted Werkzeug hashes. These are demo credentials for the seeded data only.
+Passwords are stored as salted Werkzeug hashes. These are demo credentials for the seeded data only. Never deploy with them: set `APP_ENV=production` (which requires a random `SECRET_KEY` of 32+ characters) and replace the seeded users.
+
+## Tests
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q    # unit tests need no database; integration tests use fleet_test
+```

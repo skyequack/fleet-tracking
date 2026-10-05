@@ -9,6 +9,7 @@ class User(db.Model):
     email = db.Column(db.String(150), nullable=False, unique=True)
     password_hash = db.Column(db.String(255), nullable=False)
     role = db.Column(db.String(20), nullable=False)
+    status = db.Column(db.String(10), nullable=False, default="Active", server_default="Active")
 
 
 class Vehicle(db.Model):
@@ -54,6 +55,10 @@ class Trip(db.Model):
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
     status = db.Column(db.String(15), nullable=False, default="Planned")
+    created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
+    created_by = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    vehicle = db.relationship("Vehicle", lazy="joined")
+    driver = db.relationship("Driver", lazy="joined")
 
 
 class FuelRecord(db.Model):
@@ -66,6 +71,8 @@ class FuelRecord(db.Model):
     price_per_litre = db.Column(db.Numeric(6, 2), nullable=False)
     total_cost = db.Column(db.Numeric(10, 2), nullable=False)
     full_tank = db.Column(db.Boolean, nullable=False, default=True)
+    created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
+    created_by = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
 
 class MaintenanceRecord(db.Model):
@@ -79,6 +86,8 @@ class MaintenanceRecord(db.Model):
     technician = db.Column(db.String(100))
     next_service_date = db.Column(db.Date)
     status = db.Column(db.String(15), nullable=False, default="Scheduled")
+    created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
+    created_by = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     parts = db.relationship("MaintenancePart", backref="maintenance", lazy=True)
 
 
